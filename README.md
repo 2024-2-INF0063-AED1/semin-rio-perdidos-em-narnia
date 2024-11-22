@@ -30,7 +30,6 @@ Foram utilizados dois tipos de dados para validar o algoritmo:
 O estudo revisou os seguintes métodos para a implementação e análise do algoritmo de Dijkstra:
 
 - **Algoritmo de Dijkstra:** Implementação clássica utilizando listas de prioridade simples.
-- **Otimizações do algoritmo:** Avaliação de diferentes estruturas de dados, como heap binário e heap Fibonacci, para melhorar o desempenho do algoritmo em termos de tempo de execução.
 - **Comparação com outros algoritmos:** Avaliação do algoritmo de Bellman-Ford para comparar desempenho e eficiência em diferentes cenários de grafo.
 
 ### 1.5. Avaliação
@@ -50,7 +49,6 @@ A execução do trabalho seguiu um conjunto de etapas organizadas, descritas a s
 
 ### 2.2. Implementação do algoritmo de Dijkstra
 - Desenvolveu-se uma versão inicial com listas de prioridade simples.
-- Realizaram-se otimizações com o uso do heap binário, possibilitando comparações de eficiência.
 
 ### 2.3. Validação e testes
 - Testes iniciais foram realizados em pequenos grafos, permitindo validação manual dos resultados.

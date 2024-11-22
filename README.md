@@ -40,27 +40,27 @@ Os resultados foram avaliados utilizando as seguintes métricas:
 - **Complexidade computacional:** Análise da complexidade em termos de tempo (para diferentes implementações e tamanhos de grafos) e espaço (uso de memória).
 - **Consumo de memória:** Avaliação do impacto das diferentes implementações (listas de prioridade simples, heap binário e heap Fibonacci) no uso de memória do sistema.
 
-## 2. Metodologia
+## 3. Metodologia
 A execução do trabalho seguiu um conjunto de etapas organizadas, descritas a seguir:
 
-### 2.1. Coleta e preparação dos dados
+### 3.1. Coleta e preparação dos dados
 - **Grafos sintéticos:** Foram criados com características controladas, simulando diferentes cenários.
 - **Dados reais:** Extraídos da API do OpenStreetMap e convertidos em listas ou matrizes de adjacência.
 
-### 2.2. Implementação do algoritmo de Dijkstra
+### 3.2. Implementação do algoritmo de Dijkstra
 - Desenvolveu-se uma versão inicial com listas de prioridade simples.
 
-### 2.3. Validação e testes
+### 3.3. Validação e testes
 - Testes iniciais foram realizados em pequenos grafos, permitindo validação manual dos resultados.
 - O algoritmo foi aplicado em grafos maiores para analisar o desempenho e a escalabilidade.
 
-### 2.4. Estudo comparativo
+### 3.4. Estudo comparativo
 - Implementou-se o algoritmo de Bellman-Ford para comparação direta com o de Dijkstra.
 - Avaliaram-se os desempenhos em termos de tempo e uso de memória para os mesmos conjuntos de dados.
 
-### 2.5. Análise de resultados
+### 3.5. Análise de resultados
 - Resultados foram consolidados em gráficos e tabelas, evidenciando o desempenho e os trade-offs das abordagens.
 - Foram discutidas as implicações dos métodos testados, destacando eficiência e precisão.
 
-### 2.6. Documentação final
+### 3.6. Documentação final
 - Os resultados foram compilados em um relatório detalhado, contendo diagramas e quadros comparativos que facilitam a reprodutibilidade do estudo.

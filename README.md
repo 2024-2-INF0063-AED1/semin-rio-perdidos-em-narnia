@@ -1,5 +1,11 @@
 # Algoritmo de Dijkstra
 
+201703673 - Ghustavo Barbosa Fernandes
+
+202201677 - Wallyson Miranda Aguiar 
+
+202302595 - Yuri Cassiano Matsuoka
+
 ## Resumo
 Este trabalho aborda o algoritmo de Dijkstra para cálculo do caminho mais curto em grafos ponderados. O problema é comum em roteamento, logística e redes de comunicação. A solução proposta utiliza o algoritmo de Dijkstra, explorando suas aplicações em sistemas de navegação GPS, otimização de rotas em redes de computadores e planejamento logístico. O estudo inclui a implementação do algoritmo, validação de resultados e comparação com outros métodos como o algoritmo de Bellman-Ford.
 

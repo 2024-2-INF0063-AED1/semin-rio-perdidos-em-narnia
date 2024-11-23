@@ -70,3 +70,24 @@ A execução do trabalho seguiu um conjunto de etapas organizadas, descritas a s
 
 ### 3.6. Documentação final
 - Os resultados foram compilados em um relatório detalhado, contendo diagramas e quadros comparativos que facilitam a reprodutibilidade do estudo.
+
+```mermaid
+graph TB
+
+1 --> 2 --> 3 --> 4 --> 5 --> 6
+
+1[Coleta de dados] --> 1.1[Grafos sintéticos] & 1.2[Dados reais]
+
+2[Implementação] --> 2.2[Fila de prioridades]
+
+3[Validação e Teste] --> 3.1[Pequenos grafos] & 3.2[Grafos maiores]
+3.2 --> 3.2.1[Desempenho] & 3.2.2[Escalabilidade]
+
+4[Estudo Comparativo] --> 4.1[Bellman-Ford]
+4.1 --> 4.1.1[Tempo] & 4.1.2[Uso de memória]
+
+5[Análise de Resultados] --> 5.1[Gráficos] & 5.2[Tabelas] --> Eficiência & Precisão
+
+6[Documentação Final] --> 6.1[Relatórios]
+
+```

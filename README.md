@@ -46,6 +46,62 @@ Os resultados foram avaliados utilizando as seguintes métricas:
 - **Complexidade computacional:** Análise da complexidade em termos de tempo (para diferentes implementações e tamanhos de grafos) e espaço (uso de memória).
 - **Consumo de memória:** Avaliação do impacto das diferentes implementações (listas de prioridade simples, heap binário e heap Fibonacci) no uso de memória do sistema.
 
+# 2. Fundamentos Teóricos
+
+Nesta seção, descrevem-se os principais conceitos, mecanismos e algoritmos utilizados na solução do problema proposto, bem como as métricas e métodos de avaliação empregados para análise dos resultados.
+
+## 2.1. Principais Mecanismos e Técnicas
+
+### 2.1.1. Algoritmo de Dijkstra
+O algoritmo de Dijkstra é uma técnica clássica de busca gulosa, usada para encontrar o caminho mais curto em grafos ponderados com arestas de pesos não negativos. Os principais passos de sua execução incluem:
+
+1. Inicializar a distância de todos os vértices como infinita, exceto a origem (distância igual a zero).
+2. Processar vértices utilizando uma fila de prioridade que organiza os nós pela menor distância acumulada.
+3. Atualizar as distâncias acumuladas dos vizinhos do vértice processado, se um caminho mais curto for encontrado.
+4. Repetir o processo até que todos os vértices tenham sido processados ou até atingir o destino (em aplicações específicas).
+
+### 2.1.2. Estruturas de Dados
+A escolha da estrutura de dados influencia diretamente a eficiência do algoritmo. Foram consideradas três abordagens principais:
+
+- **Fila de prioridade simples:** Implementação mais básica com complexidade \(O(V^2)\).
+- **Heap binário:** Melhora a eficiência para \(O((V+E) \log V)\), sendo ideal para grafos densos.
+- **Heap Fibonacci:** Garante melhor complexidade assintótica \(O(E + V \log V)\), mas com implementação mais complexa.
+
+### 2.1.3. Algoritmo de Bellman-Ford
+Como alternativa ao Dijkstra, o algoritmo de Bellman-Ford foi analisado. Ele resolve o problema em grafos com pesos negativos, mas com maior custo computacional \(O(VE)\). É útil para cenários específicos, como em redes onde podem ocorrer custos negativos devido a rebates ou descontos.
+
+### 2.1.4. Dados Utilizados
+Foram empregados dois tipos principais de dados para validação do algoritmo:
+
+- **Grafos sintéticos:** Criados artificialmente para simular cenários variados.
+- **Dados reais:** Extraídos da API do OpenStreetMap, que fornece representações realistas de redes de transporte urbano.
+
+## 2.2. Avaliação e Métricas de Desempenho
+
+Os métodos e algoritmos foram avaliados com base nas seguintes métricas:
+
+### 2.2.1. Acurácia
+Verificação se os caminhos mais curtos calculados estão corretos. Para isso, foram comparados com soluções conhecidas ou verificações manuais.
+
+### 2.2.2. Tempo de Execução
+O tempo necessário para encontrar o caminho mais curto foi medido em grafos de diferentes tamanhos e densidades.
+
+### 2.2.3. Consumo de Memória
+Avaliação da memória utilizada por cada implementação, especialmente ao usar estruturas de dados otimizadas como heaps.
+
+### 2.2.4. Escalabilidade
+Análise do comportamento do algoritmo ao lidar com grafos de grande porte, avaliando sua capacidade de manter desempenho estável à medida que o número de vértices e arestas cresce.
+
+### 2.2.5. Comparação com Benchmarks
+Comparação direta entre o algoritmo de Dijkstra e o Bellman-Ford, considerando as condições de aplicabilidade (pesos negativos vs. não negativos) e os resultados práticos em termos de desempenho e memória.
+
+## 2.3. Benchmarks e Ferramentas
+Os experimentos foram realizados em um ambiente controlado, utilizando:
+
+- **Linguagem de programação:** Python, com bibliotecas como *networkx* para manipulação de grafos e medições.
+- **Ambiente computacional:** Máquina com especificações padrão para garantir resultados consistentes.
+- **Ferramentas de análise:** Gráficos e tabelas para visualização dos resultados, permitindo fácil interpretação e comparação.
+
 ## 3. Metodologia
 A execução do trabalho seguiu um conjunto de etapas organizadas, descritas a seguir:
 

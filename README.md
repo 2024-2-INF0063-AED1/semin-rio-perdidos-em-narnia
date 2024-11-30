@@ -152,3 +152,60 @@ graph TB
 6[Documentação Final] --> 6.1[Relatórios]
 
 ```
+
+## 4.1 Resultados
+
+Como esperado e averiguado pelas literaturas e nossa implementação, o algoritmo de Dijkstra é uma excelente solução para o cálculo, busca e escolha de menor rota em grafos de pesos positivos, especialmente para grafos mais extensos e densos. Tomando por parâmetro o algoritmo de Bellman-Ford também implementado para analise qualitativa e quantitativa e comparação, Dijkstra se mostra mais eficiente em grafos maiores e mostrando uma pequena perda em termos de consumo de tempo, e se mostrando potencialmente superior expenandindo a complexidade dos grafos de pesos positivos utilizados.
+A seguir temos uma demonstração rápida das duas situações ditas:
+
+CASE A - Os algoritmos de Dijkstra e Bellman-Ford foram executados para calcular a rota mais curta entre os vértices 0 e 3 em um grafo de exemplo.
+
+### 4.1.1 Resultados da implementação
+
+**Dijkstra:**
+
+- Distância mínima: 4
+- Caminho: [0,2,1,3]
+- Tempo de execução: 0.0000944 segundos
+
+**Bellman-Ford:**
+
+- Distância mínima: 4
+- Caminho: [0,2,1,3]
+- Tempo de execução: 0.0000622 segundos
+
+### 4.1.2 Análise comparativa
+
+**Eficácia:** Ambos os algoritmos encontraram o mesmo caminho e distância mínima, indicando consistência para este caso de teste.
+
+**Desempenho:** 1.Bellman-Ford foi ligeiramente mais rápido no exemplo dado.
+2.Dijkstra geralmente é mais eficiente em grafos densos com pesos positivos, enquanto Bellman-Ford é mais flexível, lidando com pesos negativos.
+
+CASE B - Grafo mais denso (100 vértices, todos conectados entre si com pesos aleatórios positivos).
+
+### 4.2.1 Resultados da implementação
+
+**Dijkstra:**
+
+- Distância mínima: 3
+- Caminho: [0,29,99]
+- Tempo de execução: 0.00085 segundos
+
+**Bellman-Ford:**
+
+- Distância mínima: 3
+- Caminho: [0,6,99]
+- Tempo de execução: 0.0553 segundos
+
+### 4.2.2 Análise comparativa
+
+**Eficácia:** Ambos os algoritmos calcularam a distância mínima corretamente (3).
+No entanto, os caminhos encontrados são diferentes, o que pode ocorrer devido à estrutura do grafo e as condições de relaxamento específicas dos algoritmos.
+
+**Desempenho:** Dijkstra foi significativamente mais rápido (0.00085 segundos) devido ao uso da fila de prioridade e à eficiência em grafos densos com pesos positivos.
+
+Bellman-Ford levou muito mais tempo (0.0553 segundos) porque realiza n−1 iterações sobre todas as arestas, tornando-o menos eficiente para grafos densos.
+
+## 4.3 Conclusão
+
+Para grafos densos com pesos positivos, Dijkstra é claramente superior em termos de desempenho. Já Bellman-Ford é útil em contextos onde há pesos negativos ou para verificar ciclos negativos, mas é significativamente mais lento para grafos densos.

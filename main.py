@@ -49,12 +49,12 @@ def dijkstra(graph, start, end):
 
     return distances[end], path
 
-def fetchLocationWip(postcode):
+def fetchLocation(postcode):
     geolocator = Nominatim(user_agent="Djikstra")
     location = geolocator.geocode(postcode)
     return location
 
-def parseCoordinatesWip(location):
+def parseCoordinates(location):
     coordinates = (location.latitude, location.longitude)
     return coordinates
 

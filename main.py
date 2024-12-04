@@ -1,7 +1,7 @@
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 from queue import PriorityQueue
-import random
+import itertools
 
 def fetchCoordinates(postcode):
     geolocator = Nominatim(user_agent="Djikstra")
@@ -30,20 +30,14 @@ def readFile(filename):
 
 #readFile('file.txt')
 
-places = [(1, '-80.713937, 57.406936'),
-(2, '38.67153, 87.039646'),
-(3, '2.797919, -35.300138'),
-(4, '-67.529481, 39.976455'),
-(5, '22.698894, 36.315485'),
-(6, '60.527568, 39.530113'),
-(7, '-54.230404, -21.524200'),
-(8, '82.305747, 82.022292'),
-(9, '-6.963851, 54.325348'),
-(10, '87.370834, -65.206372')
+places = [('A', '-80.713937, 57.406936'),
+('B', '38.67153, 87.039646'),
+('C', '2.797919, -35.300138'),
+('D', '-67.529481, 39.976455'),
+('E', '22.698894, 36.315485'),
 ]
 
-i = 0
-while i < len(places)-1:
-    print(( (places[i][0]), (places[i+1][0]) ))
-    print(calcDistanceAlt( (places[i][1]), (places[i+1][1]) ))
-    i += 1
+permutations = itertools.permutations(places, 2)
+for places in permutations:
+    print("\ncaminho: ", places[0][0], places[1][0])
+    print(calcDistanceAlt (places[0][1], places[1][1]) )

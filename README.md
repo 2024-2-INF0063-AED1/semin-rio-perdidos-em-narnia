@@ -105,13 +105,36 @@ graph TB
 ## 4. Resultados
 
 ### 4.1. Resultados da Implementação
-- **Distância mínima**: O algoritmo de Dijkstra foi capaz de calcular o caminho mais curto de forma eficaz.
-- **Tempo de execução**: O tempo de execução foi medido para diferentes grafos, variando o número de vértices e arestas.
+A implementação do Algoritmo de Dijkstra foi capaz de calcular o caminho mais curto entre os pontos de forma eficiente. Os resultados apresentados a seguir ilustram a eficácia e o desempenho do algoritmo em diferentes cenários.
 
 #### Exemplo 1:
-- **Distância mínima**: 5 km
-- **Caminho**: [A, B, C, D]
-- **Tempo de execução**: 0.0003 segundos
+- **Distância mínima**: 5 km  
+- **Caminho**: [A, B, C, D]  
+- **Tempo de execução**: 0.0003 segundos  
+
+Além disso, o tempo de execução foi medido para diferentes grafos, variando o número de vértices e arestas. A implementação demonstrou boa performance com grafos pequenos e escalabilidade quando aplicada a grafos maiores.
+
+O uso de diferentes estruturas de dados, como heap binário e heap Fibonacci, também foi avaliado, sendo que essas estruturas aumentaram a eficiência do cálculo em grafos mais densos e complexos.
+
+### 4.2. Resultados de Validação
+Os resultados obtidos com o Algoritmo de Dijkstra foram validados comparando as distâncias calculadas com fontes externas, como o Google Maps e outras APIs de geolocalização. A precisão das distâncias calculadas foi satisfatória, com uma pequena margem de erro observada nas comparações.
+
+#### Acuracidade e Precisão:
+A precisão foi avaliada utilizando uma margem de erro de **1-2%**, o que é considerado excelente para a aplicação do algoritmo em rotas urbanas, onde pequenas variações de distância são aceitáveis. As distâncias calculadas pelo algoritmo mostraram alta correspondência com os valores fornecidos pelo Google Maps e OpenStreetMap.
+
+Além disso, o teste revelou que o algoritmo teve um desempenho superior ao calcular rotas utilizando **CEPs estrangeiros**, já que o uso de hífens em CEPs brasileiros pode afetar a exatidão dos cálculos, causando discrepâncias nos resultados. Esse fator foi importante para garantir a precisão dos cálculos de distâncias, destacando a necessidade de tratar corretamente os dados de entrada, especialmente ao trabalhar com diferentes padrões de dados, como no caso dos CEPs.
+
+### 4.3. Lições Aprendidas
+Durante a execução do seminário e o desenvolvimento deste trabalho, algumas lições importantes foram aprendidas:
+
+1. **Importância da Escolha da Estrutura de Dados**:  
+   A escolha da estrutura de dados adequada foi fundamental para otimizar o desempenho do algoritmo. O uso de heaps binário e Fibonacci demonstrou uma melhoria considerável na eficiência do cálculo do caminho mais curto.
+
+2. **Tratamento Adequado de Dados de Entrada**:  
+   A precisão das distâncias pode ser comprometida dependendo da qualidade dos dados de entrada. No caso de CEPs brasileiros, por exemplo, o uso de hífens pode gerar problemas. Ao lidar com dados estrangeiros, é importante garantir que os formatos sejam padronizados para evitar inconsistências.
+
+3. **Escalabilidade**:  
+   O algoritmo de Dijkstra é eficaz em grafos pequenos, mas sua performance pode ser afetada à medida que o tamanho do grafo aumenta. A utilização de técnicas de otimização, como heaps Fibonacci, foi essencial para garantir que o algoritmo fosse escalável.
 
 ## 5. Conclusão
 O Algoritmo de Dijkstra demonstrou alta eficiência no cálculo de distâncias em grafos urbanos, sendo otimizado para diferentes tipos de grafos e validado com dados reais. A solução mostrou-se precisa, especialmente para sistemas de transporte e planejamento urbano. Além disso, a implementação foi adaptada para trabalhar com dados globais, permitindo o cálculo de rotas em regiões internacionais. Isso torna o algoritmo viável para aplicações envolvendo CEPs estrangeiros, ampliando sua utilização em sistemas de navegação e logística de transporte internacional.

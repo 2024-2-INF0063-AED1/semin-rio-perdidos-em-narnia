@@ -2,6 +2,7 @@ import heapq
 import networkx as nx
 import matplotlib.pyplot as plt
 from geopy.distance import geodesic
+from geopy.geocoders import Nominatim
 import itertools
 
 def addEdge(graph, u, v, weight):
@@ -9,12 +10,15 @@ def addEdge(graph, u, v, weight):
         graph[u] = {}
     if v not in graph:
         graph[v] = {}
-    graph[u][v] = weight
-    graph[v][u] = weight
+    if v not in graph[u]:
+        graph[u][v] = weight
+    if u not in graph[v]:
+        graph[v][u] = weight
 
 def calcDistance(coord_a, coord_b):
-    distance = geodesic(coord_a, coord_b).km
-    return distance
+    coord_a = tuple(map(float, coord_a.split(',')))
+    coord_b = tuple(map(float, coord_b.split(',')))
+    return geodesic(coord_a, coord_b).km
 
 def dijkstra(graph, start, end):
     priority_queue = []
@@ -34,7 +38,6 @@ def dijkstra(graph, start, end):
 
         for neighbor, weight in graph[current_vertex].items():
             distance = current_distance + weight
-
             if distance < distances[neighbor]:
                 distances[neighbor] = distance
                 previous_vertices[neighbor] = current_vertex
@@ -49,17 +52,21 @@ def dijkstra(graph, start, end):
 
     return distances[end], path
 
-def fetchLocation(postcode):
-    geolocator = Nominatim(user_agent="Djikstra")
-    location = geolocator.geocode(postcode)
-    return location
-
-def parseCoordinates(location):
-    coordinates = (location.latitude, location.longitude)
-    return coordinates
+def fetchCoordinatesFromCEP(cep):
+    geolocator = Nominatim(user_agent="dijkstra_app")
+    try:
+        cep = cep.replace('-', '')
+        location = geolocator.geocode(cep)
+        if location:
+            return f"{location.latitude},{location.longitude}"
+        else:
+            print(f"Erro: Não foi possível encontrar o CEP '{cep}'.")
+            return None
+    except Exception as e:
+        print(f"Erro ao buscar o CEP '{cep}': {e}")
+        return None
 
 def plotGraph(graph, path):
-
     G = nx.Graph()
 
     for u in graph:
@@ -70,43 +77,60 @@ def plotGraph(graph, path):
 
     nx.draw(G, pos, with_labels=True, node_size=2000, node_color='lightblue', font_size=10, font_weight='bold')
 
-    edges = G.edges()
     weights = nx.get_edge_attributes(G, 'weight')
-    edge_labels = {edge: f"{weights[edge]:.2f}" for edge in edges}
+    edge_labels = {edge: f"{weights[edge]:.2f}" for edge in G.edges()}
 
     path_edges = list(zip(path, path[1:]))
-    nx.draw_networkx_edges(G, pos, edgelist=path_edges, edge_color='red', width=2)
-
+    nx.draw_networkx_edges(G, pos, edgelist=path_edges, edge_color='red', width=3, alpha=0.7)
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
     plt.show()
 
-places = [('A', '-80.713937, 57.406936'),
-('B', '38.67153, 87.039646'),
-('C', '2.797919, -35.300138'),
-('D', '-67.529481, 39.976455'),
-('E', '22.698894, 36.315485'),
-]
-combinations = itertools.combinations(places, 2)
+print("Bem-vindo ao sistema de cálculo de distâncias!")
+num_places = int(input("Quantos locais você deseja adicionar? "))
 
+places = []
+
+for i in range(num_places):
+    name = input(f"Digite o nome do local {i + 1}: ")
+    cep = input(f"Digite o CEP do local '{name}': ")
+    coordinates = fetchCoordinatesFromCEP(cep)
+    if coordinates:
+        places.append((name, coordinates))
+    else:
+        print(f"CEP '{cep}' inválido. Tente novamente.")
+
+if len(places) < 2:
+    print("É necessário adicionar pelo menos dois locais para calcular distâncias.")
+    exit()
+
+print("\nLocais adicionados:")
+for place in places:
+    print(place)
+
+print("\nCalculando distâncias entre os locais...")
+combinations = itertools.combinations(places, 2)
 data = []
-for places in combinations:
-    data.append( (places[0][0], places[1][0],
-    calcDistance (places[0][1], places[1][1]) ) )
-print(data)
+for place1, place2 in combinations:
+    u, coord_u = place1
+    v, coord_v = place2
+    weight = calcDistance(coord_u, coord_v)
+    data.append((u, v, weight))
+    print(f"Distância de {u} a {v}: {weight:.2f} km")
 
 graph = {}
 for u, v, weight in data:
     addEdge(graph, u, v, weight)
 
-start_vertex = 'A'
-end_vertex = 'E'
-distance, path = dijkstra(graph, start_vertex, end_vertex)
-for u, v, weight in data:
-    addEdge(graph, u, v, weight)
+start_vertex = input("\nDigite o nome do local de partida: ")
+end_vertex = input("Digite o nome do local de destino: ")
 
-# Exibindo o resultado
-print(f"A menor distância de {start_vertex} a {end_vertex} é {distance}")
-print(f"O caminho é: {' -> '.join(path)}")
+if start_vertex not in graph or end_vertex not in graph:
+    print(f"Erro: Os nós '{start_vertex}' ou '{end_vertex}' não estão no grafo.")
+else:
+    distance, path = dijkstra(graph, start_vertex, end_vertex)
 
-plotGraph(graph, path)
+    print(f"\nA menor distância de {start_vertex} a {end_vertex} é {distance:.2f} km")
+    print(f"O caminho é: {' -> '.join(path)}")
+
+    plotGraph(graph, path)

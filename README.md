@@ -11,6 +11,7 @@ Este trabalho explora o uso do Algoritmo de Dijkstra para o cálculo do caminho 
 ## 1. Introdução
 
 ### 1.1. Problema
+Este relatório apresenta um estudo detalhado sobre o Algoritmo de Dijkstra, com foco em sua aplicação no cálculo de rotas urbanas eficientes e sua validação com dados reais.
 O principal objetivo deste trabalho é calcular o caminho mais curto entre dois pontos geográficos, utilizando o Algoritmo de Dijkstra. O problema é relevante em:
 
 - Sistemas de navegação (GPS)
@@ -110,7 +111,6 @@ A implementação do Algoritmo de Dijkstra foi capaz de calcular o caminho mais 
 #### Exemplo 1:
 - **Distância mínima**: 5 km  
 - **Caminho**: [A, B, C, D]  
-- **Tempo de execução**: 0.0003 segundos  
 
 Além disso, o tempo de execução foi medido para diferentes grafos, variando o número de vértices e arestas. A implementação demonstrou boa performance com grafos pequenos e escalabilidade quando aplicada a grafos maiores.
 
